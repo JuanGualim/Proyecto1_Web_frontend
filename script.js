@@ -1,4 +1,5 @@
 const API = "http://localhost:8080"
+let editingId = null
 
 async function loadSeries() {
     const res = await fetch(`${API}/series`)
@@ -18,10 +19,10 @@ async function loadSeries() {
             </div>
 
             <div class="card-actions">
+                <button onclick="editSeries(${series.id}, '${series.name}', ${series.current_episode}, ${series.total_episodes}, '${series.image_url || ""}')">Edit</button>
                 <button onclick="deleteSeries(${series.id})">Delete</button>
             </div>
         `
-
         container.appendChild(div)
     })
 }
@@ -52,6 +53,17 @@ async function createSeries() {
     document.getElementById("image").value = ""
 
     loadSeries()
+}
+
+function editSeries(id, name, current, total, image) {
+    editingId = id
+
+    document.getElementById("name").value = name
+    document.getElementById("current").value = current
+    document.getElementById("total").value = total
+    document.getElementById("image").value = image
+
+    document.querySelector(".form button").innerText = "Update"
 }
 
 window.onload = loadSeries
