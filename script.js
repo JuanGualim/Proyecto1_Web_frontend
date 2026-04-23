@@ -25,3 +25,33 @@ async function loadSeries() {
         container.appendChild(div)
     })
 }
+
+async function createSeries() {
+    const name = document.getElementById("name").value
+    const current = document.getElementById("current").value
+    const total = document.getElementById("total").value
+    const image = document.getElementById("image").value
+
+    await fetch(`${API}/series`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: name,
+            current_episode: parseInt(current),
+            total_episodes: parseInt(total),
+            image_url: image
+        })
+    })
+
+    // limpiar inputs
+    document.getElementById("name").value = ""
+    document.getElementById("current").value = ""
+    document.getElementById("total").value = ""
+    document.getElementById("image").value = ""
+
+    loadSeries()
+}
+
+window.onload = loadSeries

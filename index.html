@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Series Tracker 💖</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>Series Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        <div class="container">
-            <h1>Series Tracker</h1>
+<div class="container">
+    <h1>Series Tracker</h1>
 
-            <div class="actions">
-                <button onclick="loadSeries()">Refresh</button>
-                <button class="secondary" onclick="exportCSV()">Export CSV</button>
-            </div>
-            <div class="form">
-                <h3>Add Series</h3>
+    <div class="actions">
+        <button onclick="loadSeries()">Refresh</button>
+        <button class="secondary" onclick="exportCSV()">Export CSV</button>
+    </div>
 
-                <input id="name" placeholder="Series name" />
-                <input id="current" type="number" placeholder="Current episode" />
-                <input id="total" type="number" placeholder="Total episodes" />
-                <input id="image" placeholder="Image URL (optional)" />
+    <div class="form">
+        <h3>Add Series</h3>
 
-                <button onclick="createSeries()">Add</button>
-            </div>
+        <input id="name" placeholder="Series name" />
+        <input id="current" type="number" placeholder="Current episode" />
+        <input id="total" type="number" placeholder="Total episodes" />
+        <input id="image" placeholder="Image URL (optional)" />
 
-            <div id="series-list"></div>
-        </div>
+        <button onclick="createSeries()">Add</button>
+    </div>
 
-        <script src="script.js"></script>
-    </body>
+    <div id="series-list"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
 </html>
