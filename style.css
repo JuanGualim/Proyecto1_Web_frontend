@@ -1,39 +1,102 @@
-body {
-    font-family: Arial;
-    background: #ffe4ec;
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    color: #2c2c2c;
+    padding: 40px 20px;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
 }
+
+/* Header */
 
 h1 {
     text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #333;
 }
 
+/* Buttons */
+
 button {
-    background: #ff69b4;
+    background: #111;
     color: white;
     border: none;
-    padding: 8px 12px;
-    margin: 5px;
-    border-radius: 8px;
+    padding: 8px 14px;
+    border-radius: 6px;
     cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s ease;
 }
 
 button:hover {
-    background: #ff4fa3;
+    background: #333;
 }
 
+button.secondary {
+    background: #e4e6eb;
+    color: #333;
+}
+
+button.secondary:hover {
+    background: #d6d8dd;
+}
+
+/* Series list */
+
+#series-list {
+    margin-top: 20px;
+}
+
+/* Card */
+
 .card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-top: 10px;
+    background: white;
+    padding: 16px;
     border-radius: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Left content */
+
+.card-info h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.card-info p {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Actions */
+
+.card-actions button {
+    margin-left: 6px;
+}
+
+/* Layout for top buttons */
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
