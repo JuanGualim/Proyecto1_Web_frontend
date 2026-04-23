@@ -12,19 +12,16 @@ async function loadSeries() {
         div.className = "card"
 
         div.innerHTML = `
-            <h3>${series.name}</h3>
-            <p>${series.current_episode} / ${series.total_episodes}</p>
-            <button onclick="deleteSeries(${series.id})">Delete</button>
+            <div class="card-info">
+                <h3>${series.name}</h3>
+                <p>${series.current_episode} / ${series.total_episodes}</p>
+            </div>
+
+            <div class="card-actions">
+                <button onclick="deleteSeries(${series.id})">Delete</button>
+            </div>
         `
 
         container.appendChild(div)
     })
-}
-
-async function deleteSeries(id) {
-    await fetch(`${API}/series/${id}`, {
-        method: "DELETE"
-    })
-
-    loadSeries()
 }
