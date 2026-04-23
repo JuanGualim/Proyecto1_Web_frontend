@@ -8,7 +8,12 @@ async function loadSeries() {
     const container = document.getElementById("series-list")
     container.innerHTML = ""
 
-    data.forEach(series => {
+    for (const series of data) {
+
+        // 🔥 obtener rating
+        const ratingRes = await fetch(`${API}/series/${series.id}/rating`)
+        const ratingData = await ratingRes.json()
+
         const div = document.createElement("div")
         div.className = "card"
 
@@ -16,6 +21,17 @@ async function loadSeries() {
             <div class="card-info">
                 <h3>${series.name}</h3>
                 <p>${series.current_episode} / ${series.total_episodes}</p>
+
+                <p>⭐ ${ratingData.average.toFixed(1)} (${ratingData.count})</p>
+
+                <div>
+                    Rate:
+                    <button onclick="rate(${series.id}, 1)">1</button>
+                    <button onclick="rate(${series.id}, 2)">2</button>
+                    <button onclick="rate(${series.id}, 3)">3</button>
+                    <button onclick="rate(${series.id}, 4)">4</button>
+                    <button onclick="rate(${series.id}, 5)">5</button>
+                </div>
             </div>
 
             <div class="card-actions">
@@ -23,8 +39,9 @@ async function loadSeries() {
                 <button onclick="deleteSeries(${series.id})">Delete</button>
             </div>
         `
+
         container.appendChild(div)
-    })
+    }
 }
 
 async function createSeries() {
@@ -75,6 +92,18 @@ function editSeries(id, name, current, total, image) {
     document.getElementById("image").value = image
 
     document.querySelector(".form button").innerText = "Update"
+}
+
+async function rate(id, value) {
+    await fetch(`${API}/series/${id}/rating`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ rating: value })
+    })
+
+    loadSeries()
 }
 
 window.onload = loadSeries

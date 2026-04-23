@@ -124,3 +124,13 @@ button.secondary:hover {
 .form button {
     width: 100%;
 }
+
+.card-info div button {
+    background: #eee;
+    color: #333;
+    margin: 2px;
+}
+
+.card-info div button:hover {
+    background: #ddd;
+}
