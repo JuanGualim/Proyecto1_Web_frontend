@@ -19,6 +19,7 @@ async function loadSeries() {
 
         div.innerHTML = `
             <div class="card-info">
+                ${series.image_url ? `<img src="${series.image_url}" class="thumb" />` : ""}
                 <h3>${series.name}</h3>
                 <p>${series.current_episode} / ${series.total_episodes}</p>
 
@@ -48,7 +49,22 @@ async function createSeries() {
     const name = document.getElementById("name").value
     const current = document.getElementById("current").value
     const total = document.getElementById("total").value
-    const image = document.getElementById("image").value
+    const file = document.getElementById("image").files[0]
+
+    let imageURL = ""
+
+    if (file) {
+        const formData = new FormData()
+        formData.append("image", file)
+
+        const uploadRes = await fetch(`${API}/upload`, {
+            method: "POST",
+            body: formData
+        })
+
+        const uploadData = await uploadRes.json()
+        imageURL = uploadData.url
+    }
 
     let url = `${API}/series`
     let method = "POST"
@@ -67,11 +83,10 @@ async function createSeries() {
             name: name,
             current_episode: parseInt(current),
             total_episodes: parseInt(total),
-            image_url: image
+            image_url: imageURL
         })
     })
 
-    // reset
     editingId = null
     document.querySelector(".form button").innerText = "Add"
 

@@ -134,3 +134,11 @@ button.secondary:hover {
 .card-info div button:hover {
     background: #ddd;
 }
+
+.thumb {
+    width: 100%;
+    max-height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
