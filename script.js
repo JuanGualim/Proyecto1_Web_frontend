@@ -33,8 +33,16 @@ async function createSeries() {
     const total = document.getElementById("total").value
     const image = document.getElementById("image").value
 
-    await fetch(`${API}/series`, {
-        method: "POST",
+    let url = `${API}/series`
+    let method = "POST"
+
+    if (editingId !== null) {
+        url = `${API}/series/${editingId}`
+        method = "PUT"
+    }
+
+    await fetch(url, {
+        method: method,
         headers: {
             "Content-Type": "application/json"
         },
@@ -46,7 +54,10 @@ async function createSeries() {
         })
     })
 
-    // limpiar inputs
+    // reset
+    editingId = null
+    document.querySelector(".form button").innerText = "Add"
+
     document.getElementById("name").value = ""
     document.getElementById("current").value = ""
     document.getElementById("total").value = ""
