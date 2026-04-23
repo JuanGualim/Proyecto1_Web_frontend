@@ -13,6 +13,16 @@
                 <button onclick="loadSeries()">Refresh</button>
                 <button class="secondary" onclick="exportCSV()">Export CSV</button>
             </div>
+            <div class="form">
+                <h3>Add Series</h3>
+
+                <input id="name" placeholder="Series name" />
+                <input id="current" type="number" placeholder="Current episode" />
+                <input id="total" type="number" placeholder="Total episodes" />
+                <input id="image" placeholder="Image URL (optional)" />
+
+                <button onclick="createSeries()">Add</button>
+            </div>
 
             <div id="series-list"></div>
         </div>
