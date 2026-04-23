@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Series Tracker 💖</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <head>
+        <title>Series Tracker 💖</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
 
-<div class="container">
-    <h1>🎬 Series Tracker</h1>
+        <div class="container">
+            <h1>Series Tracker</h1>
 
-    <button onclick="loadSeries()">Refresh</button>
-    <button onclick="exportCSV()">Export CSV</button>
+            <div class="actions">
+                <button onclick="loadSeries()">Refresh</button>
+                <button class="secondary" onclick="exportCSV()">Export CSV</button>
+            </div>
 
-    <div id="series-list"></div>
-</div>
+            <div id="series-list"></div>
+        </div>
 
-<script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>
