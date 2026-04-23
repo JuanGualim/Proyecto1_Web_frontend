@@ -137,8 +137,9 @@ button.secondary:hover {
 
 .thumb {
     width: 100%;
-    max-height: 120px;
-    object-fit: cover;
+    max-height: 150px;
+    object-fit: contain;
     border-radius: 8px;
     margin-bottom: 8px;
+    background: #f0f0f0;
 }

@@ -36,7 +36,7 @@ async function loadSeries() {
             </div>
 
             <div class="card-actions">
-                <button onclick="editSeries(${series.id}, '${series.name}', ${series.current_episode}, ${series.total_episodes}, '${series.image_url || ""}')">Edit</button>
+                <button onclick="editSeries(${series.id}, ${JSON.stringify(series.name)}, ${series.current_episode}, ${series.total_episodes}, ${JSON.stringify(series.image_url || "")})">Edit</button>
                 <button onclick="deleteSeries(${series.id})">Delete</button>
             </div>
         `
@@ -117,6 +117,18 @@ async function rate(id, value) {
         },
         body: JSON.stringify({ rating: value })
     })
+
+    loadSeries()
+}
+
+async function deleteSeries(id) {
+    console.log("Deleting:", id)
+
+    const res = await fetch(`${API}/series/${id}`, {
+        method: "DELETE"
+    })
+
+    console.log("STATUS:", res.status)
 
     loadSeries()
 }
