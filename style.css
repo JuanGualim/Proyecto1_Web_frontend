@@ -209,8 +209,8 @@ button {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 260px));
+    gap: 14px;
 }
 
 /* ============================
@@ -225,7 +225,7 @@ button {
     transition: var(--transition);
     display: flex;
     flex-direction: column;
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 4 / 4;
     position: relative;
     cursor: default;
 }
@@ -280,7 +280,7 @@ button {
 
 /* Info encima del overlay */
 .card-body {
-    padding: 14px 16px;
+    padding: 10px 12px;
     flex-shrink: 0;
     background: var(--bg-card);
     border-top: 1px solid var(--border);
@@ -288,19 +288,19 @@ button {
 
 .card-title {
     font-family: "Syne", sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .card-episode {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-secondary);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 /* Progress bar */
@@ -328,7 +328,7 @@ button {
 }
 
 .rating-score {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-secondary);
     display: flex;
     align-items: center;
@@ -342,17 +342,17 @@ button {
 
 .rate-buttons {
     display: flex;
-    gap: 3px;
+    gap: 2px;
 }
 
 .rate-btn {
     background: var(--bg-elevated);
     color: var(--text-muted);
     border: 1px solid var(--border);
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: var(--radius-sm);
-    font-size: 11px;
+    font-size: 10px;
     padding: 0;
     justify-content: center;
     transition: var(--transition);
