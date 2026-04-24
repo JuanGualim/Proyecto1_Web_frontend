@@ -7,7 +7,7 @@ Cliente web desarrollado con HTML, CSS y JavaScript vanilla que consume una API 
 ## 🌐 Deploy
 
 Frontend en producción:
- https://proyecto1webfront.vercel.app
+ https://proyecto1-web-frontend.vercel.app/
 
 Backend:
  https://proyecto1webbackend-production-d655.up.railway.app
