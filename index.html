@@ -1,32 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Series Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1>Series Tracker</h1>
+<!-- Modal overlay para el formulario -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="modal-title">Agregar Serie</h3>
+            <button class="close-btn" onclick="closeModalDirect()">&#x2715;</button>
+        </div>
 
-    <div class="actions">
-        <button onclick="loadSeries()">Refresh</button>
-        <button class="secondary" onclick="exportCSV()">Export CSV</button>
+        <div class="modal-body">
+            <div class="input-group">
+                <label for="name">Nombre</label>
+                <input id="name" type="text" placeholder="Ej: Breaking Bad" />
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="current">Episodio actual</label>
+                    <input id="current" type="number" placeholder="0" min="0" />
+                </div>
+                <div class="input-group">
+                    <label for="total">Total de episodios</label>
+                    <input id="total" type="number" placeholder="0" min="1" />
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="image">Portada</label>
+                <div class="file-drop" id="file-drop">
+                    <span id="file-label">Seleccionar imagen...</span>
+                    <input id="image" type="file" accept="image/*" onchange="handleFileChange(this)" />
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-ghost" onclick="closeModalDirect()">Cancelar</button>
+            <button class="btn-primary" onclick="createSeries()">
+                <span id="submit-label">Agregar</span>
+            </button>
+        </div>
     </div>
+</div>
 
-    <div class="form">
-        <h3>Add Series</h3>
+<!-- App principal -->
+<div class="app">
 
-        <input id="name" placeholder="Series name" />
-        <input id="current" type="number" placeholder="Current episode" />
-        <input id="total" type="number" placeholder="Total episodes" />
-        <input id="image" type="file" />
+    <!-- Sidebar / Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-mark">ST</div>
+            <div>
+                <h1>Series Tracker</h1>
+                <p class="subtitle">Tu biblioteca personal</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="btn-ghost-sm" onclick="exportCSV()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Exportar CSV
+            </button>
+            <button class="btn-ghost-sm" onclick="loadSeries()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                Refresh
+            </button>
+            <button class="btn-primary" onclick="openModal()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Nueva serie
+            </button>
+        </div>
+    </header>
 
-        <button onclick="createSeries()">Add</button>
-    </div>
+    <!-- Contenido principal -->
+    <main class="main">
+        <div class="stats-bar" id="stats-bar">
+            <span id="stats-text">Cargando...</span>
+        </div>
 
-    <div id="series-list"></div>
+        <div id="series-list" class="grid"></div>
+
+        <div class="empty-state" id="empty-state" style="display:none;">
+            <div class="empty-icon">📺</div>
+            <h3>Sin series todavía</h3>
+            <p>Agrega tu primera serie para comenzar</p>
+            <button class="btn-primary" onclick="openModal()">Agregar serie</button>
+        </div>
+    </main>
 </div>
 
 <script src="script.js"></script>
