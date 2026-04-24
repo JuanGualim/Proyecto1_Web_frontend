@@ -1,4 +1,4 @@
-const API = "http://localhost:8080"
+const API = "https://proyecto1webbackend-production-d655.up.railway.app"
 
 let editingId = null
 let currentImage = ""
